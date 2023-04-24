@@ -11,8 +11,14 @@
     <h1>정말 중요한 내용</h1>
   </div>
   
-  <script>
+<script>
+  const h1 = document.querySelector('h1')
+  h1.addEventListener('copy', function (event) {
+    console.log(event)
+    event.preventDefault()
+    alert('복사 할 수 없습니다. 돌아가시오.....')
 
+  })
 </script>
 
 </body>

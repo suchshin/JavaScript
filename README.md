@@ -3,17 +3,21 @@
 ## Day1(23.04.18)
 
 * JavaScript가 무엇인지 이해하고 설명 할 수 있다.
+
 * JavaScript 개발 환경을 설정하고 사용할 수 있다.
+
 * 값을 선언하고 변수에 할당 할 수 있다.
+
 * JavaScript의 다양한 데이터 유형을 구분하고 활용할 수 있다.
+
 * JavaScript 연산자를 이해하고 활용 할 수 있다.
+
 * for, while 반복문을 이해하고 활용할 수 있다.
   
   ### 링크
+
 * html-css-js 예시
   [https://html-css-js.com/]([https://html-css-js.com/](https://html-css-js.com/))
-
-
 
 ---
 
@@ -41,6 +45,16 @@
 
 * Event의 개념을 이해하고 설명 할 수 있다.
 * Event Listener의 작동 원리를 이해하고 직접 활용 할 수 있다.
+
+
+
+### 링크
+
+* 다양한 이벤트 확인
+  [Event reference | MDN](https://developer.mozilla.org/en-US/docs/Web/Events)
+
+* Lodash
+  [https://lodash.com/](https://lodash.com/)
 
 ---
 

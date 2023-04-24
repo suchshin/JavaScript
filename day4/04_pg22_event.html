@@ -84,7 +84,7 @@
     event.stopPropagation();
 
     //상위 뿐 아니라 같은 레벨로도 이벤트가 전파되지 않도록 중단한다.
-    // event.stopImmediatePropagation();
+    event.stopImmediatePropagation();
     
     
   })
@@ -97,8 +97,6 @@
 
     // 상위로 이벤트가 전파되지 않도록 중단한다.
     event.stopPropagation();
-
-    
     
   })
 

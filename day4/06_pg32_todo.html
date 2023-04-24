@@ -14,6 +14,32 @@
   <ul></ul>
 
   <script>
+    const formTag = document.querySelector('form')
+
+    const addTodo = function (event) {
+      event.preventDefault() // form 제출 기능 막기
+
+      const inputTag = document.querySelector('.inputData')
+      const data = inputTag.value
+
+      if (data.trim()) {
+        const liTag = document.createElement('li')
+        liTag.innerText = data
+  
+        const ulTag = document.querySelector('ul')
+        ulTag.appendChild(liTag)
+  
+        event.target.reset()
+
+      } else {
+        alert('할일을 입력하세요.')
+      }
+
+
+    }
+
+    formTag.addEventListener('submit', addTodo)
+
   </script>
 </body>
 </html>
