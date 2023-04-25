@@ -46,8 +46,6 @@
 * Event의 개념을 이해하고 설명 할 수 있다.
 * Event Listener의 작동 원리를 이해하고 직접 활용 할 수 있다.
 
-
-
 ### 링크
 
 * 다양한 이벤트 확인
@@ -63,6 +61,23 @@
 * 비동기 처리가 무엇인지 이해하고 작동 원리를 설명할 수 있다.
 * promise 객체의 작동방식을 이해하고 활용할 수 있다.
 * axios 라이브러리를 이해하고 HTTP 요청 코드를 작성 할 수 있다.
+
+### 링크
+
+* 비동기 통신
+  [시작하기 | Axios Docs](https://axios-http.com/kr/docs/intro)
+
+* 강아지 api
+  
+  https://dog.ceo/api/breeds/image/random
+
+* 고양이 api
+  
+  https://api.thecatapi.com/v1/images/search
+
+* API 사이트
+  
+  https://jsonplaceholder.typicode.com/
 
 ---
 
