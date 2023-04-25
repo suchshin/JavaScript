@@ -86,4 +86,12 @@
 * Django Template에 script를 추가하여 DOM을 조작할 수 있다.
 * 동기식 처리방식을 비동기식 처리방식으로 변경 할 수 있다.
 
+### 링크
+* dataset
+  [dataset](https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/data-*)
+* csrf token django 공식문서
+  [csrf](https://docs.djangoproject.com/en/3.2/ref/csrf/)
+* 
+
+
 ---
