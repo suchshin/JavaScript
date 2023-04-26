@@ -9,6 +9,7 @@ from django.contrib.auth import get_user_model
 
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 
+from django.http import JsonResponse
 
 # Create your views here.
 @require_http_methods(['GET', 'POST'])
@@ -118,9 +119,25 @@ def follow(request, user_pk):
         you = User.objects.get(pk=user_pk)
         if me != you:
             if you.followers.filter(pk=me.pk).exists():
+                # 이미 팔로우를 한 상태라면
                 you.followers.remove(me)
+                # 팔로워에서 나는 제거하고
+                # 팔로우 여부를 확인하기 위해 is_followed 생성
+                is_followed = False
+
             else:
+                # 팔로우 하지 않았던 상태라면 나를 추가하고
                 you.followers.add(me)
+                is_followed = True
+            
+            context = {
+                'is_followed' : is_followed,
+                'followers_count' : you.followers.count(),
+                'followings_count' : you.followings.count()
+            }
+            return JsonResponse(context)
+            # 팔로우 과정이 완료되면 is_followed 정보를 context로 넘겨준다
+
         return redirect('accounts:profile', you.username)
     return redirect('accounts:login')
 

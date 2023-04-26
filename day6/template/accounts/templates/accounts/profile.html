@@ -3,12 +3,13 @@
 {% block content %}
   <h1>{{ person.username }}님의 프로필</h1>
   <div>
-    팔로워 : {{ person.followers.all|length }} / 팔로잉 : {{ person.followings.all|length }}
+    팔로워 : <span id="followers-count">{{ person.followers.all|length }}</span>/ 
+    팔로잉 : <span id="followings-count">{{ person.followings.all|length }}</span>
   </div>
 
   {% if request.user != person %}
   <div>
-    <form action="{% url 'accounts:follow' person.pk %}" method="POST">
+    <form id="follow-form" data-user-id="{{person.pk}}">
       {% csrf_token %}
       {% if request.user in person.followers.all %}
         <input type="submit" value="언팔로우">
@@ -40,3 +41,47 @@
 
   <a href="{% url 'articles:index' %}">back</a>
 {% endblock content %}
+
+<!-- {% comment %} ========================================= {% endcomment %} -->
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const form = document.querySelector("#follow-form")
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  // csrftoken을 넘겨주기 위해서 먼저 가져와야 한다
+  // 장고의 csrftoken의 콘솔을 보게되면 hidden 타입으로 위와 같은 값이 있다
+
+  form.addEventListener("submit", function(event){
+    event.preventDefault()
+    // submit과 동시에 새로 이동되는 것을 막아주는 역할 입력해주지 않으면 값이 초기화
+    
+    const userId = event.target.dataset.userId
+    // dataset.userId는 위에서 정의한 data-user-id를 카멜 케이스로 변환해서 가져오는 정해진 형식
+    axios({
+      method: 'post',
+      url: `/accounts/${userId}/follow/`,
+      headers: {'X-CSRFToken' : csrftoken}
+      // ajax로 csrf 보내는 방법
+    })
+      .then((response) => {
+        const isFollowed = response.data.is_followed
+        const followBtn = document.querySelector('#follow-form > input[type=submit]')
+        // id가 follow-form인 것에서 input 타입이 submit인 것을 찾아오기
+        if (isFollowed === true) {
+          followBtn.value = '언팔로우'
+        } else{
+          followBtn.value = '팔로우'
+        }
+        const followersCountTag = document.querySelector('#followers-count')
+        const followingsCountTag = document.querySelector('#followings-count')
+
+        const followersCount = response.data.followers_count
+        const followingsCount = response.data.followings_count
+        followersCountTag.innerText = followersCount
+        followingsCountTag.innerText = followingsCount
+      })
+  })
+
+</script>
+
+{% endblock script %}
